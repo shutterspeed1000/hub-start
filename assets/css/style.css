@@ -1,0 +1,13 @@
+.card-img-top {
+    width: 100%;
+    height: 20vh;
+    object-fit:cover;
+    object-position:top;
+    }
+
+
+.card-text{
+
+    width: 100%;
+    height: 10vh;
+}
