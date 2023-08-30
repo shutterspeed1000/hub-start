@@ -1,0 +1,24 @@
+<div class="card h-100" style="width: 100%;">
+    <img class="card-img-top img-thumbnail" src="./assets/images/CSCFSSSQ.png"
+        alt="Card image cap" height="20%">
+    <div class="card-body">
+        <h5 class="card-title">Our Homepage</h5>
+        <p class="card-text">Visit this site to find information about CSCF and events
+            happening at our locations.</p>
+        <a href="https://careersourcecentralflorida.com"
+            class="btn btn-primary">CAREERSOURCECENTRALFLORIDA.COM</a>
+    </div>
+</div>
+
+<div class="card h-100" style="width: 100%;">
+    <img class="card-img-top img-thumbnail" src="./assets/images/RASSSQ.png"
+        alt="Card image cap" height="20%">
+    <div class="card-body">
+        <h5 class="card-title">Remployment Assistance</h5>
+        <p class="card-text">Go to www.floridajobs.org/raaplication to access the online
+            system to file an RA Claim, claim your weeks or access frequently asked
+            questions.</p>
+        <a href="http://www.floridajobs.org/RAApplication"
+            class="btn btn-primary">Remployment Assistance</a>
+    </div>
+</div>
