@@ -1,27 +1,29 @@
 .card-img-top {
-    width: 100%;
-    height: 15vh;
-    object-fit:cover;
-    object-position:top;
-    }
-
-
-.card-text{
-    font-size: 15px;
-    width: 100%;
-    height: 10vh;
+  width: 100%;
+  height: 15vh;
+  object-fit: cover;
+  object-position: top;
 }
 
-.links{
-    width: 100%; 
+.card-text {
+  font-size: 15px;
+  width: 100%;
+  height: 5em;
 }
 
-#main{
-    height: auto;
+#main {
+  height: auto;
 }
 
-.surveyRandom{
-font-size:1px;
-
-
+.surveyRandom {
+  font-size: 1px;
 }
+/* 
+ .btn {
+  width: 50%;
+  
+} */
+
+.links {
+  width: 100%;
+} 
