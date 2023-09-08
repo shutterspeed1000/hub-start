@@ -9,16 +9,12 @@
   font-size: 15px;
   width: 100%;
   height: 5em;
-  
-
 }
 
-.card-body{
- width: 100%;
- text-align: left;
- object-position: bottom;
- 
-
+.card-body {
+  width: 100%;
+  text-align: left;
+  object-position: bottom;
 }
 
 #main {
@@ -36,4 +32,4 @@
 
 .links {
   width: 100%;
-} 
+}
