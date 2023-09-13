@@ -32,9 +32,15 @@
 
 .links {
   width: 100%;
+  
 }
 
 .rightsec{
 max-height: 10px;
 
+}
+
+.divline{
+
+  margin: 0px
 }
