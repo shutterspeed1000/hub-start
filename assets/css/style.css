@@ -44,3 +44,8 @@ max-height: 10px;
 
   margin: 0px
 }
+
+.logo{
+  display: flex;
+  justify-content: center;
+}
