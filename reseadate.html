@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,18 +14,21 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
     <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-2xl">
-        
+
 
         <div class="overflow-x-auto rounded-lg">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tl-lg">
-                            RESEA Letter Received
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tl-lg">
+                            RESEA Letter Dated
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tr-lg">
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tr-lg">
                             Appointment must be by
                         </th>
                     </tr>
@@ -39,7 +43,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const dateTableBody = document.getElementById('dateTableBody');
-            const today = new Date(); // Get the current date
+            const today = new Date();
 
             // Function to format date as "Month Day, Year" (e.g., "July 18, 2025")
             const formatDate = (date) => {
@@ -47,36 +51,55 @@
                 return date.toLocaleDateString('en-US', options);
             };
 
-            // Loop 10 times to generate rows for the next 10 days
-            for (let i = 0; i < 7; i++) {
-                const currentDate = new Date(today); // Create a new Date object for each iteration
-                currentDate.setDate(today.getDate() + i); // Add 'i' days to the current date, making it the "current date" for this row
+            // Function to find the next Tuesday from a given date
+            const getNextTuesday = (date) => {
+                const nextTuesday = new Date(date);
+                const dayOfWeek = nextTuesday.getDay(); // 0 = Sunday, 1 = Monday, ..., 2 = Tuesday
+                const daysUntilTuesday = (2 - dayOfWeek + 7) % 7; // Calculate days until next Tuesday
+                if (daysUntilTuesday === 0 && date.getDay() !== 2) {
+                    // If today is not Tuesday, get next Tuesday
+                    nextTuesday.setDate(date.getDate() + 7);
+                } else {
+                    nextTuesday.setDate(date.getDate() + daysUntilTuesday);
+                }
+                return nextTuesday;
+            };
 
-                const sevenDaysEarlier = new Date(currentDate); // Create a new Date object based on currentDate
-                sevenDaysEarlier.setDate(currentDate.getDate() - 7); // Subtract 7 days from it
+            // Get the first Tuesday (starting point)
+            let currentTuesday = getNextTuesday(today);
+
+            // Generate 7 rows of Tuesdays
+            for (let i = 0; i < 7; i++) {
+                // Calculate appointment date (20 days after the Tuesday)
+                const appointmentDate = new Date(currentTuesday);
+                appointmentDate.setDate(currentTuesday.getDate() + 20);
 
                 // Create table row
                 const row = document.createElement('tr');
-                row.classList.add('hover:bg-gray-50'); // Add hover effect
+                row.classList.add('hover:bg-gray-50');
 
-                // Create 7 Days Earlier cell (now column 1)
-                const sevenDaysEarlierCell = document.createElement('td');
-                sevenDaysEarlierCell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'font-medium', 'text-gray-900');
-                sevenDaysEarlierCell.textContent = formatDate(sevenDaysEarlier);
+                // Create Tuesday cell (first column)
+                const tuesdayCell = document.createElement('td');
+                tuesdayCell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'font-medium', 'text-gray-900');
+                tuesdayCell.textContent = formatDate(currentTuesday);
 
-                // Create Current Date cell (now column 2)
-                const currentCell = document.createElement('td');
-                currentCell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'text-gray-500');
-                currentCell.textContent = formatDate(currentDate);
+                // Create appointment date cell (second column)
+                const appointmentCell = document.createElement('td');
+                appointmentCell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'text-gray-500');
+                appointmentCell.textContent = formatDate(appointmentDate);
 
-                // Append cells to the row in the new order
-                row.appendChild(sevenDaysEarlierCell);
-                row.appendChild(currentCell);
+                // Append cells to the row
+                row.appendChild(tuesdayCell);
+                row.appendChild(appointmentCell);
 
                 // Append row to the table body
                 dateTableBody.appendChild(row);
+
+                // Move to the next Tuesday (add 7 days)
+                currentTuesday.setDate(currentTuesday.getDate() + 7);
             }
         });
     </script>
 </body>
+
 </html>
