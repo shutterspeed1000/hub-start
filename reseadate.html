@@ -51,24 +51,30 @@
                 return date.toLocaleDateString('en-US', options);
             };
 
-            // Function to find the next Tuesday from a given date
-            const getNextTuesday = (date) => {
-                const nextTuesday = new Date(date);
-                const dayOfWeek = nextTuesday.getDay(); // 0 = Sunday, 1 = Monday, ..., 2 = Tuesday
-                const daysUntilTuesday = (2 - dayOfWeek + 7) % 7; // Calculate days until next Tuesday
-                if (daysUntilTuesday === 0 && date.getDay() !== 2) {
-                    // If today is not Tuesday, get next Tuesday
-                    nextTuesday.setDate(date.getDate() + 7);
+            // Function to find the previous Tuesday from a given date
+            const getPreviousTuesday = (date) => {
+                const previousTuesday = new Date(date);
+                const dayOfWeek = previousTuesday.getDay(); // 0 = Sunday, 1 = Monday, ..., 2 = Tuesday
+                const daysSinceTuesday = (dayOfWeek - 2 + 7) % 7; // Calculate days since last Tuesday
+                if (daysSinceTuesday === 0 && date.getDay() === 2) {
+                    // If today is Tuesday, use today
+                    return previousTuesday;
+                } else if (daysSinceTuesday === 0) {
+                    // If calculated as 0 but not Tuesday, go back 7 days
+                    previousTuesday.setDate(date.getDate() - 7);
                 } else {
-                    nextTuesday.setDate(date.getDate() + daysUntilTuesday);
+                    previousTuesday.setDate(date.getDate() - daysSinceTuesday);
                 }
-                return nextTuesday;
+                return previousTuesday;
             };
 
-            // Get the first Tuesday (starting point)
-            let currentTuesday = getNextTuesday(today);
+            // Get the most recent Tuesday (starting point)
+            let currentTuesday = getPreviousTuesday(today);
 
-            // Generate 7 rows of Tuesdays
+            // Go back 4 more Tuesdays to start with 5 previous Tuesdays
+            currentTuesday.setDate(currentTuesday.getDate() - (4 * 7));
+
+            // Generate 7 rows of Tuesdays (starting from 5 Tuesdays ago)
             for (let i = 0; i < 7; i++) {
                 // Calculate appointment date (20 days after the Tuesday)
                 const appointmentDate = new Date(currentTuesday);
