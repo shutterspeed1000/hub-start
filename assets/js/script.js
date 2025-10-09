@@ -5,7 +5,7 @@ setTimeout(function () {
 function checkReconnectCode(event) {
     event.preventDefault();
     const code = prompt("Please enter the access code:");
-    if (code === "1801") {
+    if (code === "1701") {
         window.open("https://reconnect.commerce.fl.gov", "_blank");
     } else {
         alert("Incorrect code. Access denied.");
