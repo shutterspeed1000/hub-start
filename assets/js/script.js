@@ -6,7 +6,7 @@ function checkReconnectCode(event) {
     event.preventDefault();
     const code = prompt("Please enter the access code:");
     if (code === "1701") {
-        window.open(event.target.href, "_blank");
+        window.open(event.currentTarget.href, "_blank");
     } else {
         alert("Incorrect code. Access denied.");
     }
